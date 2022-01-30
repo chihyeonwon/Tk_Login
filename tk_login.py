@@ -17,7 +17,7 @@ lab1.pack()
 
 # id 입력창
 ent1 = Entry(win)
-
+ent1.insert(0, "temp@temp.com")
 ent1.pack()
 
 # pw 라벨
