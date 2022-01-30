@@ -18,6 +18,14 @@ lab1.pack()
 # id 입력창
 ent1 = Entry(win)
 ent1.insert(0, "temp@temp.com")
+
+
+def clear(event):
+    if ent1.get() == "temp@temp.com":
+        ent1.delete(0, len(ent1.get()))
+
+
+ent1.bind("<Button-1>", clear)
 ent1.pack()
 
 # pw 라벨
