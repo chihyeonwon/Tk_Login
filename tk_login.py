@@ -1,15 +1,15 @@
 from tkinter import *
+from PIL import ImageTk
 win = Tk()
 win.title("Daum Log-in")
-win.geometry("400x300")
+win.geometry("400x600")
 win.option_add("*Font", "궁서 20")
 
 # 다음 로고
 lab_d = Label(win)
-img =
+img = ImageTk.PhotoImage(file='logo.gif', master=win)
 lab_d.config(image=img)
 lab_d.pack()
-
 # id 라벨
 lab1 = Label(win)
 lab1.config(text="ID")
