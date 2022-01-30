@@ -27,7 +27,7 @@ lab2.pack()
 
 # pw 입력창
 ent2 = Entry(win)
-
+ent2.config(show="*")
 ent2.pack()
 
 # 로그인 버튼
