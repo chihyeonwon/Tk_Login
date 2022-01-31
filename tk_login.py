@@ -1,20 +1,7 @@
 from tkinter import *
 from PIL import ImageTk
 from selenium import webdriver
-
-
-def login():
-    driver = webdriver.Chrome("C:/Users/ylose/Desktop/chromedriver.exe")
-    url = "https://accounts.kakao.com/login?continue=https%3A%2F%2Flogins.daum.net%2Faccounts%2Fksso.do%3Frescue%3Dtrue%26url%3Dhttps%253A%252F%252Fwww.daum.net%252F"
-    driver.get(url)
-    driver.implicityl_wait(5)  # 5초동안 대기합니다.
-    xpath1 = "//input[@name='email']"
-    driver.find_element_by_xpath(xpath1).send_keys("aaa")
-    xpath2 = "//input[@name='password']"
-    driver.find_element_by_xpath(xpath2).send_keys("bbb")
-    xpath3 = "//button[@class='btn_g btn_confirm submit']"
-    driver.find_element_by_xpath(xpath3).click()
-
+import time
 
 win = Tk()
 win.title("Daum Log-in")
@@ -23,7 +10,7 @@ win.option_add("*Font", "궁서 20")
 
 # 다음 로고
 lab_d = Label(win)
-img = ImageTk.PhotoImage(file='logo.gif', master=win)
+img = ImageTk.PhotoImage(file='image.png', master=win)
 lab_d.config(image=img)
 lab_d.pack()
 # id 라벨
@@ -60,9 +47,18 @@ btn.config(text="로그인")
 
 
 def login():
-    my_id = ent1.get()
-    my_pw = ent2.get()
-    print(my_id, my_pw)
+    options = webdriver.ChromeOptions()
+    options.add_experimental_option("excludeSwitches", ["enable-logging"])
+    driver = webdriver.Chrome(options=options)
+    url = "https://accounts.kakao.com/login?continue=https%3A%2F%2Flogins.daum.net%2Faccounts%2Fksso.do%3Frescue%3Dtrue%26url%3Dhttps%253A%252F%252Fwww.daum.net%252F"
+    driver.get(url)
+    time.sleep(5)  # 5초동안 대기합니다.
+    xpath1 = "//input[@name='email']"
+    driver.find_element(xpath1).send_keys(ent1.get())
+    xpath2 = "//input[@name='password']"
+    driver.find_element(xpath2).send_keys(ent2.get())
+    xpath3 = "//button[@class='btn_g btn_confirm submit']"
+    driver.find_element(xpath3).click()
     lab3.config(text="[메시지] 로그인 성공")
 
 
