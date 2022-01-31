@@ -1,5 +1,21 @@
 from tkinter import *
 from PIL import ImageTk
+from selenium import webdriver
+
+
+def login():
+    driver = webdriver.Chrome("C:/Users/ylose/Desktop/chromedriver.exe")
+    url = "https://accounts.kakao.com/login?continue=https%3A%2F%2Flogins.daum.net%2Faccounts%2Fksso.do%3Frescue%3Dtrue%26url%3Dhttps%253A%252F%252Fwww.daum.net%252F"
+    driver.get(url)
+    driver.implicityl_wait(5)  # 5초동안 대기합니다.
+    xpath1 = "//input[@name='email']"
+    driver.find_element_by_xpath(xpath1).send_keys("aaa")
+    xpath2 = "//input[@name='password']"
+    driver.find_element_by_xpath(xpath2).send_keys("bbb")
+    xpath3 = "//button[@class='btn_g btn_confirm submit']"
+    driver.find_element_by_xpath(xpath3).click()
+
+
 win = Tk()
 win.title("Daum Log-in")
 win.geometry("400x600")
@@ -41,6 +57,20 @@ ent2.pack()
 # 로그인 버튼
 btn = Button(win)
 btn.config(text="로그인")
+
+
+def login():
+    my_id = ent1.get()
+    my_pw = ent2.get()
+    print(my_id, my_pw)
+    lab3.config(text="[메시지] 로그인 성공")
+
+
+btn.config(command=login)
 btn.pack()
+
+# 메시지 라벨
+lab3 = Label(win)
+lab3.pack()
 
 win.mainloop()
